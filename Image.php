@@ -198,6 +198,8 @@ class Image {
                 break;
             case 'png':
                 $imageResource = @imagecreatefrompng($filename);
+                @imagealphablending($imageResource, true);
+                @imagesavealpha($imageResource, true);
                 break;
             default:
                 $imageResource = false;
@@ -211,6 +213,21 @@ class Image {
         }
 
         return $imageResource;
+    }
+    
+    /* 
+    */
+    private function _imageCreateTrueColor($width, $height) {
+        $image = imagecreatetruecolor($width, $height);
+        
+        if (strtolower($this->getExtension()) === 'png') {
+            imagealphablending($image, false);
+            imagesavealpha($image, true);
+            $transparentColor = imagecolorallocatealpha($image, 0, 0, 0, 127);
+            imagefill($image, 0, 0, $transparentColor);
+        }
+        
+        return $image;
     }
 
     /* 
@@ -252,7 +269,7 @@ class Image {
             return false;
         }
 
-        $targetImage = imagecreatetruecolor($targetWidth, $targetHeight);
+        $targetImage = $this->_imageCreateTrueColor($targetWidth, $targetHeight);
         if (! imagecopyresampled($targetImage, $this->Image, 0, 0, 0, 0, 
                 $targetWidth, $targetHeight, $sourceWidth, $sourceHeight)) {
             return false;
@@ -279,7 +296,7 @@ class Image {
             return false;
         }
 
-         $targetImage = imagecreatetruecolor($width, $height);
+         $targetImage = $this->_imageCreateTrueColor($width, $height);
 
          $sourceX = floor(($sourceWidth - $width) / 2);
          $sourceY = floor(($sourceHeight - $width) / 2);
