@@ -20,8 +20,8 @@ class imageTest extends UnitTestCase {
         'bmp.jpg', 'i.gif', 'i.jpeg', 'i.jpg', 'i.png', 'i2.GIF', 
         'i2.JPG', 'i2.PNG', 'i_.jpg', 'jpg.png.gif.jpg', 
         'multi.dots..jpg', 'trailing blank .jpg', 
-        'white space.jpg', 'РєРёСЂРёР»Р»РёС†Р° СЃ РїСЂРѕР±РµР»Р°РјРё.jpg', 
-        'РїСЂРѕР±РµР» РІ РєРѕРЅС†Рµ .jpg'
+        'white space.jpg', 'кириллица с пробелами.jpg', 
+        'пробел в конце .jpg'
     );
     
     /*

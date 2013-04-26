@@ -85,7 +85,7 @@ class Image {
         if (! $this->SourceDirectory) {
             $this->Errors[] = "The source directory hasn't been specified.";
         } elseif (is_file($this->SourceDirectory . $this->ImageName) === false) {
-            $this->Errors[] = "There's no such source file.";
+            $this->Errors[] = "There's no such source file {$this->ImageName}.";
         } elseif($this->checkExtension() === false) {
             $this->Errors[] = "Invalid extension {$this->getExtension()}.";
         } elseif(is_writable($this->TargetDirectory) === false) {
@@ -198,7 +198,7 @@ class Image {
                 break;
             case 'png':
                 $imageResource = @imagecreatefrompng($filename);
-                @imagealphablending($imageResource, true);
+                @imagealphablending($imageResource, false);
                 @imagesavealpha($imageResource, true);
                 break;
             default:
