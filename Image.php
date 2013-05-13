@@ -299,7 +299,7 @@ class Image {
          $targetImage = $this->_imageCreateTrueColor($width, $height);
 
          $sourceX = floor(($sourceWidth - $width) / 2);
-         $sourceY = floor(($sourceHeight - $width) / 2);
+         $sourceY = floor(($sourceHeight - $height) / 2);
 
          if (! imagecopyresampled($targetImage, $this->Image, 0, 0, $sourceX, $sourceY, 
                 $width, $height, $width, $height)) {
