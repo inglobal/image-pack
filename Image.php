@@ -2,7 +2,7 @@
 /* 
 * Image - PHP image processing class.
 * It can be used to transform image (resize, cutSquare methods) 
-* and save it to the server or display to the browser.
+* and save it to a server or display to a browser.
 */
 class Image {
 
